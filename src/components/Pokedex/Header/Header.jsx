@@ -1,7 +1,6 @@
 import React from "react";
 
 import styled from "styled-components";
-import Bolt from "../Bolt/Bolt";
 
 const Header = styled.div`
   background-color: rgb(139, 0, 3);

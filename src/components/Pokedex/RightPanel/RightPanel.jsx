@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import InfoScreen from "./InfoScreen/InfoScreen";
+import Keypad from "./Keypad/Keypad";
 
 const RightPanel = styled.div`
   width: 47%;
   height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const RightPanelWhiteClip = styled.div`
@@ -15,6 +22,7 @@ const RightPanelWhiteClip = styled.div`
   border-radius: 0px 0px 0px 64px;
   z-index: 25;
   right: 5px;
+  top: 0px;
 `;
 
 const RightPanelWhiteClipper = styled.div`
@@ -23,13 +31,16 @@ const RightPanelWhiteClipper = styled.div`
   width: 174px;
   position: absolute;
   top: 0px;
-  right: 16px;
+  right: 17px;
+  z-index: 10;
 `;
 
 const RightPanelClip = styled.div`
   background-color: white;
   width: 100%;
   height: 64px;
+  position: absolute;
+  top: 0px;
 `;
 
 const RightPanelClipper = styled.div`
@@ -39,6 +50,7 @@ const RightPanelClipper = styled.div`
   position: absolute;
   top: 0px;
   border-radius: 0px 64px 0px 0px;
+  left: 0px;
 `;
 
 export default () => (
@@ -47,5 +59,7 @@ export default () => (
     <RightPanelWhiteClipper></RightPanelWhiteClipper>
     <RightPanelClip></RightPanelClip>
     <RightPanelClipper></RightPanelClipper>
+    <InfoScreen></InfoScreen>
+    <Keypad></Keypad>
   </RightPanel>
 );
