@@ -17,4 +17,6 @@ const Bolt = styled.div`
   border-bottom: 1px solid black;
 `;
 
-export default () => <Bolt></Bolt>;
+const BoltContainer = () => <Bolt></Bolt>;
+
+export default BoltContainer;

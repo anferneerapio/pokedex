@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LeftPanel from "./LeftPanel/LeftPanel";
 import RightPanel from "./RightPanel/RightPanel";
@@ -26,14 +26,22 @@ const PokedexShadow = styled.div`
   border-radius: 32px;
 `;
 
-export default () => (
-  <>
-    <PokedexShadow></PokedexShadow>
-    <Header></Header>
-    <Pokedex>
-      <LeftPanel></LeftPanel>
-      <Connector></Connector>
-      <RightPanel></RightPanel>
-    </Pokedex>
-  </>
-);
+const PokedexContainer = () => {
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+  return (
+    <>
+      <PokedexShadow></PokedexShadow>
+      <Header></Header>
+      <Pokedex>
+        <LeftPanel
+          pokemonIndex={pokemonIndex}
+          setPokemonIndex={setPokemonIndex}
+        ></LeftPanel>
+        <Connector></Connector>
+        <RightPanel pokemonIndex={pokemonIndex}></RightPanel>
+      </Pokedex>
+    </>
+  );
+};
+
+export default PokedexContainer;

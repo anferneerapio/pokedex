@@ -10,4 +10,6 @@ const InfoScreen = styled.div`
   border-radius: 8px;
 `;
 
-export default () => <InfoScreen></InfoScreen>;
+const InforScreenContainer = () => <InfoScreen></InfoScreen>;
+
+export default InforScreenContainer;

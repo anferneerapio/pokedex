@@ -14,7 +14,7 @@ const RightPanel = styled.div`
 `;
 
 const RightPanelWhiteClip = styled.div`
-  background-color: white;
+  background-color: rgb(16, 5, 61);
   width: 195px;
   height: 64px;
   position: absolute;
@@ -36,7 +36,7 @@ const RightPanelWhiteClipper = styled.div`
 `;
 
 const RightPanelClip = styled.div`
-  background-color: white;
+  background-color: rgb(16, 5, 61);
   width: 100%;
   height: 64px;
   position: absolute;
@@ -53,7 +53,7 @@ const RightPanelClipper = styled.div`
   left: 0px;
 `;
 
-export default () => (
+const RightPanelContainer = () => (
   <RightPanel>
     <RightPanelWhiteClip></RightPanelWhiteClip>
     <RightPanelWhiteClipper></RightPanelWhiteClipper>
@@ -63,3 +63,5 @@ export default () => (
     <Keypad></Keypad>
   </RightPanel>
 );
+
+export default RightPanelContainer;

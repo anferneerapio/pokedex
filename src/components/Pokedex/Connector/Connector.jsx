@@ -14,14 +14,14 @@ const Connector = styled.div`
   z-index: 20;
 `;
 
-export default () => (
+const ConnectorContainer = () => (
   <Connector>
     <div
       style={{
         position: "absolute",
         top: "-112px",
         right: "50%",
-        transform: "translateX(50%)"
+        transform: "translateX(50%)",
       }}
     >
       <Bolt></Bolt>
@@ -30,3 +30,5 @@ export default () => (
     <Bolt></Bolt>
   </Connector>
 );
+
+export default ConnectorContainer;

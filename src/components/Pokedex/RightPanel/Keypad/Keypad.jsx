@@ -10,7 +10,7 @@ const Keypad = styled.div`
   margin: 16px 0 16px 0;
 `;
 
-export default () => (
+const KeypadContainer = () => (
   <Keypad>
     <KeypadButton></KeypadButton>
     <KeypadButton></KeypadButton>
@@ -24,3 +24,5 @@ export default () => (
     <KeypadButton></KeypadButton>
   </Keypad>
 );
+
+export default KeypadContainer;

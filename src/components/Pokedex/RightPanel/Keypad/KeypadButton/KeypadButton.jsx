@@ -9,4 +9,6 @@ const KeypadButton = styled.div`
   border-radius: 8px;
 `;
 
-export default () => <KeypadButton></KeypadButton>;
+const KeypadContainer = () => <KeypadButton></KeypadButton>;
+
+export default KeypadContainer;

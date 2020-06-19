@@ -54,7 +54,7 @@ const LedLight = styled.div`
   border-radius: 50%;
   /* box-shadow: inset 0 0 10px #000000; */
   border: 1px solid grey;
-  background-color: ${props => {
+  background-color: ${(props) => {
     if (props.color === "red") {
       return "rgb(224, 70, 66)";
     } else if (props.color === "yellow") {
@@ -67,7 +67,7 @@ const LedLight = styled.div`
   width: 20px;
 `;
 
-export default () => (
+const HeaderContainer = () => (
   <>
     <HeaderShadow></HeaderShadow>
     <Header>
@@ -82,3 +82,5 @@ export default () => (
     </Header>
   </>
 );
+
+export default HeaderContainer;
