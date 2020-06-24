@@ -1,4 +1,9 @@
-import { FETCH_ALL_POKEMON, FETCH_POKEMON } from "../actions/action-types";
+import {
+  FETCH_ALL_POKEMON,
+  FETCH_POKEMON,
+  FETCH_POKEMON_SUCCESS,
+  FETCH_POKEMON_FAILED,
+} from "../actions/action-types";
 
 const intialState = {
   pokemonList: [],
@@ -9,6 +14,7 @@ const intialState = {
       front_default: "",
     },
   },
+  fetching: false,
 };
 
 export default (state = intialState, action) => {
@@ -17,14 +23,27 @@ export default (state = intialState, action) => {
       const { pokemon_entries: pokemonList } = action.payload;
       return {
         ...state,
-        pokemonList,
         pokemonCount: pokemonList.length,
       };
     }
     case FETCH_POKEMON: {
       return {
         ...state,
+        fetching: true,
+      };
+    }
+    case FETCH_POKEMON_SUCCESS: {
+      return {
+        ...state,
+        fetching: false,
         pokemon: action.payload,
+      };
+    }
+    case FETCH_POKEMON_FAILED: {
+      return {
+        ...state,
+        fetching: false,
+        error: action.payload.name,
       };
     }
     default: {

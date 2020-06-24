@@ -1,6 +1,7 @@
 import React from "react";
-
+import Loader from "react-loader-spinner";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const InfoScreen = styled.div`
   width: 300px;
@@ -14,15 +15,37 @@ const InfoScreen = styled.div`
   justify-content: center;
 `;
 
-const PokemonInfo = styled.div``;
+const LoaderParent = styled(Loader)`
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-const InforScreenContainer = ({ pokemon, pokemonIndex }) => (
+const PokemonInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  min-width: 70px;
+`;
+
+const InforScreenContainer = ({ pokemon, pokemonIndex, fetching, error }) => (
   <InfoScreen>
     <PokemonInfo>
       <span>No. {pokemonIndex}: </span>
-      <span>{pokemon.name.toUpperCase()}</span>
+      {fetching ? (
+        <LoaderParent color="green" type="ThreeDots"></LoaderParent>
+      ) : (
+        <>{error ? "----" : <span>{pokemon.name.toUpperCase()}</span>}</>
+      )}
     </PokemonInfo>
   </InfoScreen>
 );
 
-export default InforScreenContainer;
+export default connect(
+  (state) => ({
+    fetching: state.pokemon.fetching,
+    error: state.pokemon.error,
+  }),
+  {}
+)(InforScreenContainer);

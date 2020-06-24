@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
 
 const Panel = styled.div`
   width: 85%;
@@ -22,12 +24,44 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const PanelContainer = ({ pokemonIndex, pokemon }) => (
+const LoaderParent = styled(Loader)`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ErrorMessage = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const PanelContainer = ({ pokemonIndex, pokemon, fetching, error }) => (
   <Panel>
     <ImageContainer>
-      <Image src={pokemon.sprites.front_default}></Image>
+      {fetching ? (
+        <LoaderParent color="green" type="ThreeDots"></LoaderParent>
+      ) : (
+        <>
+          {error ? (
+            <ErrorMessage>{error}</ErrorMessage>
+          ) : (
+            <Image src={pokemon.sprites.front_default}></Image>
+          )}
+        </>
+      )}
     </ImageContainer>
   </Panel>
 );
 
-export default PanelContainer;
+export default connect(
+  (state) => ({
+    fetching: state.pokemon.fetching,
+    error: state.pokemon.error,
+  }),
+  {}
+)(PanelContainer);
