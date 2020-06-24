@@ -22,11 +22,13 @@ const LeftPanelClip = styled.div`
   pointer-events: none;
 `;
 
-const LeftPanelScreenContainer = ({ pokemonIndex }) => (
-  <LeftPanelScreen>
-    <Panel pokemonIndex={pokemonIndex}></Panel>
-    <LeftPanelClip></LeftPanelClip>
-  </LeftPanelScreen>
-);
+const LeftPanelScreenContainer = ({ pokemonIndex, pokemon }) => {
+  return (
+    <LeftPanelScreen>
+      <Panel pokemon={pokemon} pokemonIndex={pokemonIndex}></Panel>
+      <LeftPanelClip></LeftPanelClip>
+    </LeftPanelScreen>
+  );
+};
 
 export default LeftPanelScreenContainer;

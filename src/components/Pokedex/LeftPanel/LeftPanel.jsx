@@ -13,9 +13,12 @@ const LeftPanel = styled.div`
   position: relative;
 `;
 
-const LeftPanelContainer = ({ setPokemonIndex, pokemonIndex }) => (
+const LeftPanelContainer = ({ setPokemonIndex, pokemonIndex, pokemon }) => (
   <LeftPanel>
-    <LeftPanelScreen pokemonIndex={pokemonIndex}></LeftPanelScreen>
+    <LeftPanelScreen
+      pokemon={pokemon}
+      pokemonIndex={pokemonIndex}
+    ></LeftPanelScreen>
     <NavigationButton
       pokemonIndex={pokemonIndex}
       setPokemonIndex={setPokemonIndex}

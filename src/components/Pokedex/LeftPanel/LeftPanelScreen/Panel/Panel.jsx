@@ -11,6 +11,23 @@ const Panel = styled.div`
   border: 3px solid rgb(72, 72, 72);
 `;
 
-const PanelContainer = ({ pokemonIndex }) => <Panel>{pokemonIndex}</Panel>;
+const ImageContainer = styled.div`
+  height: 100%;
+  width: 100%;
+`;
+
+const Image = styled.img`
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+`;
+
+const PanelContainer = ({ pokemonIndex, pokemon }) => (
+  <Panel>
+    <ImageContainer>
+      <Image src={pokemon.sprites.front_default}></Image>
+    </ImageContainer>
+  </Panel>
+);
 
 export default PanelContainer;

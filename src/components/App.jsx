@@ -34,9 +34,4 @@ const App = ({ fetchPokemonList }) => {
   );
 };
 
-export default connect(
-  () => {
-    return {};
-  },
-  { fetchPokemonList: fetchPokemonList }
-)(App);
+export default connect(() => ({}), { fetchPokemonList: fetchPokemonList })(App);

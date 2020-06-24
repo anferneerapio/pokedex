@@ -8,8 +8,21 @@ const InfoScreen = styled.div`
   background: #7eee4c;
   box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
-const InforScreenContainer = () => <InfoScreen></InfoScreen>;
+const PokemonInfo = styled.div``;
+
+const InforScreenContainer = ({ pokemon, pokemonIndex }) => (
+  <InfoScreen>
+    <PokemonInfo>
+      <span>No. {pokemonIndex}: </span>
+      <span>{pokemon.name.toUpperCase()}</span>
+    </PokemonInfo>
+  </InfoScreen>
+);
 
 export default InforScreenContainer;

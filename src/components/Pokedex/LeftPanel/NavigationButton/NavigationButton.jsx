@@ -40,14 +40,14 @@ const NavigationButtonCenter = styled.div`
 `;
 
 const NavClick = ({ direction, pokemonIndex, setPokemonIndex }) => {
-  if (direction === "up") {
+  if (direction === "down") {
     if (pokemonIndex < 10) {
       setPokemonIndex(0);
     } else {
       setPokemonIndex(pokemonIndex - 10);
     }
   }
-  if (direction === "down") {
+  if (direction === "up") {
     if (pokemonIndex > 800) {
       setPokemonIndex(806);
     } else {

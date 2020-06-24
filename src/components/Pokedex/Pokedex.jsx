@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
+import { connect } from "react-redux";
+import { fetchPokemon } from "../../actions/actions";
+
 import LeftPanel from "./LeftPanel/LeftPanel";
 import RightPanel from "./RightPanel/RightPanel";
 import Connector from "./Connector/Connector";
@@ -26,22 +30,29 @@ const PokedexShadow = styled.div`
   border-radius: 32px;
 `;
 
-const PokedexContainer = () => {
+const PokedexContainer = ({ fetchPokemon, pokemon }) => {
   const [pokemonIndex, setPokemonIndex] = useState(0);
+  useEffect(() => {
+    fetchPokemon(pokemonIndex + 1);
+  }, [pokemonIndex]);
+
   return (
     <>
       <PokedexShadow></PokedexShadow>
       <Header></Header>
       <Pokedex>
         <LeftPanel
+          pokemon={pokemon}
           pokemonIndex={pokemonIndex}
           setPokemonIndex={setPokemonIndex}
         ></LeftPanel>
         <Connector></Connector>
-        <RightPanel pokemonIndex={pokemonIndex}></RightPanel>
+        <RightPanel pokemon={pokemon} pokemonIndex={pokemonIndex}></RightPanel>
       </Pokedex>
     </>
   );
 };
 
-export default PokedexContainer;
+export default connect((state) => ({ pokemon: state.pokemon.pokemon }), {
+  fetchPokemon,
+})(PokedexContainer);

@@ -53,13 +53,13 @@ const RightPanelClipper = styled.div`
   left: 0px;
 `;
 
-const RightPanelContainer = () => (
+const RightPanelContainer = ({ pokemon, pokemonIndex }) => (
   <RightPanel>
     <RightPanelWhiteClip></RightPanelWhiteClip>
     <RightPanelWhiteClipper></RightPanelWhiteClipper>
     <RightPanelClip></RightPanelClip>
     <RightPanelClipper></RightPanelClipper>
-    <InfoScreen></InfoScreen>
+    <InfoScreen pokemon={pokemon} pokemonIndex={pokemonIndex}></InfoScreen>
     <Keypad></Keypad>
   </RightPanel>
 );
