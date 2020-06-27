@@ -13,32 +13,82 @@ const InfoScreen = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 8px;
 `;
 
 const LoaderParent = styled(Loader)`
-  height: 20px;
-  width: 20px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const PokemonInfo = styled.div`
+const PokemonDiv = styled.div`
   display: flex;
   justify-content: space-between;
   min-width: 70px;
 `;
 
-const InforScreenContainer = ({ pokemon, pokemonIndex, fetching, error }) => (
+const PokemonName = styled.span`
+  margin: 16px 0;
+`;
+
+const PokemonType = styled.span`
+  align-self: flex-end;
+`;
+
+const PokemonStats = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+`;
+
+const PokemonInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+
+const generateName = ({ pokemon, pokemonIndex, fetching, error }) => (
+  <div style={{ height: "100%", width: "100%" }}>
+    {fetching ? (
+      <LoaderParent color="green" type="ThreeDots"></LoaderParent>
+    ) : (
+      <div style={{ height: "100%", width: "100%" }}>
+        {error ? (
+          "----"
+        ) : (
+          <PokemonInfo>
+            <PokemonType>
+              Type:{" "}
+              {pokemon.types.map(({ type, slot }) => (
+                <span key={slot}>{type.name.toUpperCase()} </span>
+              ))}
+            </PokemonType>
+            <PokemonName>
+              No. {pokemonIndex}:<span>{pokemon.name.toUpperCase()}</span>
+            </PokemonName>
+            <PokemonStats>
+              {pokemon.stats.map((stat, ind) => (
+                <div key={`stat_${ind}`} style={{ marginRight: "24px" }}>
+                  <span>{stat.stat.name.toUpperCase()}: </span>
+                  <span>{stat.base_stat}</span>
+                </div>
+              ))}
+            </PokemonStats>
+          </PokemonInfo>
+        )}
+      </div>
+    )}
+  </div>
+);
+
+const InforScreenContainer = (props) => (
   <InfoScreen>
-    <PokemonInfo>
-      <span>No. {pokemonIndex}: </span>
-      {fetching ? (
-        <LoaderParent color="green" type="ThreeDots"></LoaderParent>
-      ) : (
-        <>{error ? "----" : <span>{pokemon.name.toUpperCase()}</span>}</>
-      )}
-    </PokemonInfo>
+    <PokemonDiv></PokemonDiv>
+    {generateName(props)}
   </InfoScreen>
 );
 

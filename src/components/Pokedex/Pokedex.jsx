@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 import { connect } from "react-redux";
@@ -30,10 +30,15 @@ const PokedexShadow = styled.div`
   border-radius: 32px;
 `;
 
-const PokedexContainer = ({ fetchPokemon, pokemon }) => {
+const PokedexContainer = ({ fetchPokemon, pokemon, pokemonList }) => {
   const [pokemonIndex, setPokemonIndex] = useState(0);
+
+  const getPokemon = useCallback(() => {
+    fetchPokemon(pokemonIndex + 1, pokemonList);
+  }, [pokemonIndex, fetchPokemon, pokemonList]);
+
   useEffect(() => {
-    fetchPokemon(pokemonIndex + 1);
+    getPokemon();
   }, [pokemonIndex]);
 
   return (
@@ -53,6 +58,12 @@ const PokedexContainer = ({ fetchPokemon, pokemon }) => {
   );
 };
 
-export default connect((state) => ({ pokemon: state.pokemon.pokemon }), {
-  fetchPokemon,
-})(PokedexContainer);
+export default connect(
+  (state) => ({
+    pokemon: state.pokemon.pokemon,
+    pokemonList: state.pokemon.pokemonList,
+  }),
+  {
+    fetchPokemon,
+  }
+)(PokedexContainer);

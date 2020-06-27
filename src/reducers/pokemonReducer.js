@@ -13,6 +13,8 @@ const intialState = {
     sprites: {
       front_default: "",
     },
+    types: [],
+    stats: [],
   },
   fetching: false,
 };
@@ -33,10 +35,13 @@ export default (state = intialState, action) => {
       };
     }
     case FETCH_POKEMON_SUCCESS: {
+      const pokemonListArray = [...state.pokemonList];
+      pokemonListArray[action.payload.id - 1] = action.payload;
       return {
         ...state,
         fetching: false,
         pokemon: action.payload,
+        pokemonList: pokemonListArray,
       };
     }
     case FETCH_POKEMON_FAILED: {

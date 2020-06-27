@@ -11,12 +11,16 @@ export const fetchPokemonList = () => async (dispatch) => {
   dispatch({ type: FETCH_ALL_POKEMON, payload: response.data });
 };
 
-export const fetchPokemon = (id) => async (dispatch) => {
-  dispatch({ type: FETCH_POKEMON });
-  try {
-    const response = await pokedexAPI(`/pokemon/${id}`);
-    dispatch({ type: FETCH_POKEMON_SUCCESS, payload: response.data });
-  } catch (error) {
-    dispatch({ type: FETCH_POKEMON_FAILED, payload: error });
+export const fetchPokemon = (id, pokemonList) => async (dispatch) => {
+  if (pokemonList[id - 1] === undefined || null) {
+    dispatch({ type: FETCH_POKEMON });
+    try {
+      const response = await pokedexAPI(`/pokemon/${id}`);
+      dispatch({ type: FETCH_POKEMON_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: FETCH_POKEMON_FAILED, payload: error });
+    }
+  } else {
+    dispatch({ type: FETCH_POKEMON_SUCCESS, payload: pokemonList[id - 1] });
   }
 };
